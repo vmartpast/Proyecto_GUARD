@@ -1,0 +1,25 @@
+==============================================================================
+  PRUEBAS GUARD   2026-11-05 17:25:54
+  equipo guard-pi · Linux 6.18.39+rpt-rpi-v8 · Python 3.13.5 · commit desconocido
+==============================================================================
+
+Pruebas unitarias
+------------------------------------------------------------------------------
+[FAIL  ] U1  Persistencia: separa WiFi y salto de frecuencia  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_rf'")
+[FAIL  ] U2  Detector de energía sobre barrido acumulado ante salto  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_rf'")
+[FAIL  ] U3  Lista blanca: filtrado por familia de emisión  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_rf'")
+[FAIL  ] U4  Lista blanca: lectura de fichero válido, corrupto e inexistente  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_rf'")
+[FAIL  ] U5  Puente: checksum y validación de tramas del ESP32  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_bridge'")
+
+Pruebas de integración
+------------------------------------------------------------------------------
+
+Pruebas de sistema
+------------------------------------------------------------------------------
+
+Resumen: 0 PASS · 5 FAIL · 0 SKIP · 0 MANUAL

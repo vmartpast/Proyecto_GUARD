@@ -1,0 +1,30 @@
+[Unit]
+Description=GUARD — clasificador de UAV en tiempo real
+Documentation=file:/opt/guard_device/docs/ESTADO_ACTUAL.md
+
+# Consume las capturas que deja el detector; sin el no tiene trabajo, pero
+# tampoco falla: espera. Wants= y no Requires=, como el resto de la cadena.
+After=guard-detector-rf.service
+Wants=guard-detector-rf.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/guard_device/tools/guard_clasificador.py --modelo /opt/guard_device/modelo/modelo_guard.npz
+WorkingDirectory=/opt/guard_device/tools
+User=guard
+Group=guard
+
+# Menos prioridad que el detector: si la CPU va justa, la vigilancia va
+# primero y la clasificacion espera.
+Nice=10
+# Tope de memoria: una fuga en el clasificador no puede dejar a la Pi
+# (2 GB) sin memoria para el detector y el panel.
+MemoryMax=400M
+
+Restart=always
+RestartSec=5s
+
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

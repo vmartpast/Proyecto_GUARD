@@ -1,0 +1,21 @@
+==============================================================================
+  PRUEBAS GUARD   2026-11-05 18:11:36
+  equipo guard-pi · Linux 6.18.39+rpt-rpi-v8 · Python 3.13.5 · commit 3227775
+==============================================================================
+
+Pruebas unitarias
+------------------------------------------------------------------------------
+
+Pruebas de integración
+------------------------------------------------------------------------------
+[PASS  ] I1  ESP32: descarte de tramas corruptas  (5.6 s)
+           válida: (sin respuesta); checksum incorrecto: <ERR|CS|*55; faltan campos: <ERR|FMT|*1A; demasiado larga: <ERR|LEN|*02
+[PASS  ] I2  Puente: estado del detector caído y recuperado  (3.7 s)
+           unidad guard-detector-rf.service; paso a ERROR: 0.0 s; vuelta a OK con el primer latido del detector arrancado: 0.5 s. Comprobar a la vista: LED ámbar durante la parada
+[PASS  ] I4  Receptor: acceso exclusivo del detector  (0.1 s)
+           hackrf_info con el detector activo: hackrf_open() failed: Resource busy (-1000); el detector real y el simulado se excluyen en systemd: sí
+
+Pruebas de sistema
+------------------------------------------------------------------------------
+
+Resumen: 3 PASS · 0 FAIL · 0 SKIP · 0 MANUAL

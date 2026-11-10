@@ -1,0 +1,25 @@
+==============================================================================
+  PRUEBAS GUARD   2026-11-05 17:34:11
+  equipo guard-pi · Linux 6.18.39+rpt-rpi-v8 · Python 3.13.5 · commit 3227775
+==============================================================================
+
+Pruebas unitarias
+------------------------------------------------------------------------------
+[PASS  ] U1  Persistencia: separa WiFi y salto de frecuencia  (0.0 s)
+           WiFi: canal 6 (persistencia 0.8); salto: 38 canales (persistencia 0.14); solo ruido: 0 emisiones
+[PASS  ] U2  Detector de energía sobre barrido acumulado ante salto  (0.0 s)
+           suelo con barridos cortos -54.7 dB; con barrido acumulado -35.1 dB (+19.6 dB); WiFi detectado sobre el acumulado: no
+[PASS  ] U3  Lista blanca: filtrado por familia de emisión  (0.0 s)
+           WiFi conocido: True; salto conocido: False (solapa con la entrada); eventos emitidos: 1 (salto_frecuencia)
+[PASS  ] U4  Lista blanca: lectura de fichero válido, corrupto e inexistente  (0.0 s)
+           fichero válido: 1 entrada; fichero corrupto: 0 entradas y 1 error registrado; fichero inexistente: 0 entradas
+[PASS  ] U5  Puente: checksum y validación de tramas del ESP32  (0.0 s)
+           checksum 1C (esperado 1C); trama válida -> ['ACK', 'DET']; checksum incorrecto -> []; sin checksum -> []
+
+Pruebas de integración
+------------------------------------------------------------------------------
+
+Pruebas de sistema
+------------------------------------------------------------------------------
+
+Resumen: 5 PASS · 0 FAIL · 0 SKIP · 0 MANUAL

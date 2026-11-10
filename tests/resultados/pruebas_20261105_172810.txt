@@ -1,0 +1,17 @@
+==============================================================================
+  PRUEBAS GUARD   2026-11-05 17:27:37
+  equipo guard-pi · Linux 6.18.39+rpt-rpi-v8 · Python 3.13.5 · commit desconocido
+==============================================================================
+
+Pruebas unitarias
+------------------------------------------------------------------------------
+
+Pruebas de integración
+------------------------------------------------------------------------------
+
+Pruebas de sistema
+------------------------------------------------------------------------------
+[PASS  ] S4  Receptor desconectado: estado sin datos  (33.3 s)
+           estado sin_datos publicado 1 s después de la desconexión; se recuperó solo en 16 s al volver a conectarlo. Comprobar a la vista: panel en rojo
+
+Resumen: 1 PASS · 0 FAIL · 0 SKIP · 0 MANUAL

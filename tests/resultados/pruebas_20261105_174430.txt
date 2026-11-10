@@ -1,0 +1,47 @@
+==============================================================================
+  PRUEBAS GUARD   2026-11-05 17:35:12
+  equipo guard-pi · Linux 6.18.39+rpt-rpi-v8 · Python 3.13.5 · commit 3227775
+==============================================================================
+
+Pruebas unitarias
+------------------------------------------------------------------------------
+[PASS  ] U1  Persistencia: separa WiFi y salto de frecuencia  (0.0 s)
+           WiFi: canal 6 (persistencia 0.8); salto: 38 canales (persistencia 0.14); solo ruido: 0 emisiones
+[PASS  ] U2  Detector de energía sobre barrido acumulado ante salto  (0.0 s)
+           suelo con barridos cortos -54.7 dB; con barrido acumulado -35.1 dB (+19.6 dB); WiFi detectado sobre el acumulado: no
+[PASS  ] U3  Lista blanca: filtrado por familia de emisión  (0.0 s)
+           WiFi conocido: True; salto conocido: False (solapa con la entrada); eventos emitidos: 1 (salto_frecuencia)
+[PASS  ] U4  Lista blanca: lectura de fichero válido, corrupto e inexistente  (0.0 s)
+           fichero válido: 1 entrada; fichero corrupto: 0 entradas y 1 error registrado; fichero inexistente: 0 entradas
+[PASS  ] U5  Puente: checksum y validación de tramas del ESP32  (0.0 s)
+           checksum 1C (esperado 1C); trama válida -> ['ACK', 'DET']; checksum incorrecto -> []; sin checksum -> []
+
+Pruebas de integración
+------------------------------------------------------------------------------
+[FAIL  ] I1  ESP32: descarte de tramas corruptas  (5.5 s)
+           válida: (sin respuesta); checksum incorrecto: <ERR|CS|*55; faltan campos: <ERR|FMT|*1A; demasiado larga: <ERR|FMT|*1A
+[PASS  ] I2  Puente: estado del detector caído y recuperado  (0.9 s)
+           unidad guard-detector-rf.service; paso a ERROR: 0.0 s; vuelta a OK tras arrancarlo: 0.0 s. Comprobar a la vista: LED ámbar durante la parada
+[SKIP  ] I3  Detector: lista blanca leída del fichero  (151.4 s)
+           el detector no publica análisis con datos del receptor
+[SKIP  ] I4  Receptor: acceso exclusivo del detector  (151.3 s)
+           el detector no publica análisis con datos del receptor
+[PASS  ] I5  systemd: cadena de arranque de los servicios  (0.1 s)
+           dependencias After= correctas; el modo silente no está activo en este arranque (desarrollo)
+
+Pruebas de sistema
+------------------------------------------------------------------------------
+[PASS  ] S1  Configuración de watchdogs y reinicio automático  (0.1 s)
+           watchdog hardware: 20 s (dispositivo presente); guard-detector-rf.service: Restart=always, WatchdogSec=0 s, MemoryMax=infinity, CPUQuota=infinity. AVISO: el detector no tiene watchdog de servicio; un bloqueo sin terminar el proceso no se detecta (ver S2)
+[FAIL  ] S2  Detector bloqueado (SIGSTOP)  (91.9 s)
+           guard-detector-rf.service: el proceso 5646 quedó detenido 90 s sin que systemd lo reiniciara (reiniciado a mano al terminar)
+[PASS  ] S3  Detector terminado (SIGKILL)  (5.3 s)
+           guard-detector-rf.service: proceso 7123 terminado; reiniciado en 5.3 s
+[SKIP  ] S4  Receptor desconectado: estado sin datos  (151.3 s)
+           el receptor no entregaba datos antes de la prueba
+[PASS  ] S5  Latencia de la alerta DET -> ACK  (0.6 s)
+           723 alertas; latencia DET->ACK mediana 265 ms, máxima 518 ms (incluye el registro en el diario)
+[MANUAL] S6  Cuelgue del sistema (watchdog hardware)  (0.0 s)
+           no se automatiza porque reinicia el equipo. Procedimiento: echo c | sudo tee /proc/sysrq-trigger; anotar el paso del ESP32 a LINK_DOWN (LED rojo) y el tiempo hasta que el equipo responde de nuevo
+
+Resumen: 10 PASS · 2 FAIL · 3 SKIP · 1 MANUAL

@@ -1,0 +1,18 @@
+# Grabaciones IQ y datos derivados pesados (se regeneran con tools/)
+*.cs8
+*.npy
+*.joblib
+# Modelos ONNX de los benchmarks (se exportan con Ultralytics)
+*.onnx
+# Entornos y cachés de Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+# Varios
+*.log
+*.tmp
+.DS_Store
+
+# Notas de trabajo, no se publican
+docs/BITACORA.md

@@ -1,0 +1,47 @@
+==============================================================================
+  PRUEBAS GUARD   2026-11-05 17:25:59
+  equipo guard-pi · Linux 6.18.39+rpt-rpi-v8 · Python 3.13.5 · commit desconocido
+==============================================================================
+
+Pruebas unitarias
+------------------------------------------------------------------------------
+[FAIL  ] U1  Persistencia: separa WiFi y salto de frecuencia  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_rf'")
+[FAIL  ] U2  Detector de energía sobre barrido acumulado ante salto  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_rf'")
+[FAIL  ] U3  Lista blanca: filtrado por familia de emisión  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_rf'")
+[FAIL  ] U4  Lista blanca: lectura de fichero válido, corrupto e inexistente  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_rf'")
+[FAIL  ] U5  Puente: checksum y validación de tramas del ESP32  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_bridge'")
+
+Pruebas de integración
+------------------------------------------------------------------------------
+[FAIL  ] I1  ESP32: descarte de tramas corruptas  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_bridge'")
+[FAIL  ] I2  Puente: estado del detector caído y recuperado  (0.0 s)
+           excepción: ModuleNotFoundError("No module named 'guard_bridge'")
+[FAIL  ] I3  Detector: lista blanca leída del fichero  (0.2 s)
+           excepción: FileNotFoundError(2, 'No such file or directory')
+[FAIL  ] I4  Receptor: acceso exclusivo del detector  (0.1 s)
+           hackrf_info con el detector activo: abrió el receptor; el detector real y el simulado se excluyen en systemd: sí
+[PASS  ] I5  systemd: cadena de arranque de los servicios  (0.1 s)
+           dependencias After= correctas; el modo silente no está activo en este arranque (desarrollo)
+
+Pruebas de sistema
+------------------------------------------------------------------------------
+[PASS  ] S1  Configuración de watchdogs y reinicio automático  (0.1 s)
+           watchdog hardware: 20 s (dispositivo presente); guard-detector-rf.service: Restart=always, WatchdogSec=0 s, MemoryMax=infinity, CPUQuota=infinity. AVISO: el detector no tiene watchdog de servicio; un bloqueo sin terminar el proceso no se detecta (ver S2)
+[FAIL  ] S2  Detector bloqueado (SIGSTOP)  (90.7 s)
+           guard-detector-rf.service: el proceso 3928 quedó detenido 90 s sin que systemd lo reiniciara (reiniciado a mano al terminar)
+[PASS  ] S3  Detector terminado (SIGKILL)  (5.3 s)
+           guard-detector-rf.service: proceso 4402 terminado; reiniciado en 5.3 s
+[SKIP  ] S4  Receptor desconectado: estado sin datos  (0.0 s)
+           omitida con --sin-usb
+[PASS  ] S5  Latencia de la alerta DET -> ACK  (0.8 s)
+           706 alertas; latencia DET->ACK mediana 263 ms, máxima 518 ms (incluye el registro en el diario)
+[MANUAL] S6  Cuelgue del sistema (watchdog hardware)  (0.0 s)
+           no se automatiza porque reinicia el equipo. Procedimiento: echo c | sudo tee /proc/sysrq-trigger; anotar el paso del ESP32 a LINK_DOWN (LED rojo) y el tiempo hasta que el equipo responde de nuevo
+
+Resumen: 4 PASS · 10 FAIL · 1 SKIP · 1 MANUAL

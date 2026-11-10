@@ -1,0 +1,19 @@
+==============================================================================
+  PRUEBAS GUARD   2026-11-05 19:28:24
+  equipo guard-pi · Linux 6.18.39+rpt-rpi-v8 · Python 3.13.5 · commit 3227775
+==============================================================================
+
+Pruebas unitarias
+------------------------------------------------------------------------------
+
+Pruebas de integración
+------------------------------------------------------------------------------
+
+Pruebas de sistema
+------------------------------------------------------------------------------
+[PASS  ] S1  Configuración de watchdogs y reinicio automático  (0.1 s)
+           watchdog hardware: 20 s (dispositivo presente); guard-detector-rf.service: Restart=always, WatchdogSec=30 s, MemoryMax=infinity, CPUQuota=infinity
+[PASS  ] S2  Detector bloqueado (SIGSTOP)  (35.5 s)
+           guard-detector-rf.service: proceso 19817 detenido; systemd lo sustituyó por el 20155 en 35 s
+
+Resumen: 2 PASS · 0 FAIL · 0 SKIP · 0 MANUAL
